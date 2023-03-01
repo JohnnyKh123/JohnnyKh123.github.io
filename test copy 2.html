@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        table, th, td 
+        {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th { 
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="showData"></p>
+    
+
+<div id="dvCustomersGrid"></div>
+
+</body>
+
+<script>
+
+let bearertoken="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvaWNjbGViLnNoYXJlcG9pbnQuY29tQGIxMzQ4ZjUwLTAzMGUtNGVhMS04ZDQ0LTQ5M2VlMTlmODhkOCIsImlzcyI6IjAwMDAwMDAxLTAwMDAtMDAwMC1jMDAwLTAwMDAwMDAwMDAwMEBiMTM0OGY1MC0wMzBlLTRlYTEtOGQ0NC00OTNlZTE5Zjg4ZDgiLCJpYXQiOjE2NzcxNDAxMTksIm5iZiI6MTY3NzE0MDExOSwiZXhwIjoxNjc3MjI2ODE5LCJpZGVudGl0eXByb3ZpZGVyIjoiMDAwMDAwMDEtMDAwMC0wMDAwLWMwMDAtMDAwMDAwMDAwMDAwQGIxMzQ4ZjUwLTAzMGUtNGVhMS04ZDQ0LTQ5M2VlMTlmODhkOCIsIm5hbWVpZCI6ImM4YTc2ZjkzLThjNmItNDExYy04ZDQ0LTU4OWE5MmNhMWM5MEBiMTM0OGY1MC0wMzBlLTRlYTEtOGQ0NC00OTNlZTE5Zjg4ZDgiLCJvaWQiOiJiMzAwYzlmZC02ZDA0LTQxMzctOGYyYS0yMGM4MTUyNWViNGYiLCJzdWIiOiJiMzAwYzlmZC02ZDA0LTQxMzctOGYyYS0yMGM4MTUyNWViNGYiLCJ0cnVzdGVkZm9yZGVsZWdhdGlvbiI6ImZhbHNlIn0.A8lHdLJKEDVAqb-yhHQIxHtOIcyjVWVzlPFPJ9QCeewk-X8b64eZ6KGB26GGUhmQRiMEYNhjSjKmQBiehEDQG3KxIEuyoShQEQK21-sgxfar6s13AsQQ4I2OQ0z6wzZ0U2G7wC584cqIw6L5EDh7FL1jVg6D7tItnWHhGMJ_ooa5qkZbDTeq7kaB0bQJvo9vx8YdV1s17-wdvLHWaMO8NYudk-5PWlD1SUKnAqta1w60zLWDrEQRTJrvnj88j-9_XRu04urUPpO1h9UJGasmod_7Cw8UR7Z72-wou1aM4YfqVBQpTk36TjDK9FQRb5Se4e1P_-GmQVDGAimRo2S-vg"
+let siteurl="https://iccleb.sharepoint.com/sites/NintexTrainee/JohnnyAbouHaidar";
+let listname="Employees Training Information";
+
+let col_items=[
+
+          "EmployeeName",
+          "EmployeeID",
+          "EmployeeEmail",
+          "EmployeeDepartment",
+          "EmployeeDivision",
+          "EmployeeGrade",
+          "TrainingType",
+          "TechnicalTrainingName",
+          "TechnicalTrainingProviderName",
+          "TechnicalTrainingObjective",
+          "NonTechnicalTrainingCategory",
+          "NonTechnicalTrainingCompetency",             
+          "NonTechnicalTrainingCourse",
+          "NonTechnicalTrainingCategory1",
+          "NonTechnicalTrainingCompetency1",
+          "NonTechnicalTrainingCourse1",
+          "NonTechnicalTrainingPreferredLearningMethod",
+          "NonTechnicalTrainingPreferredLearningMethodOther"
+]
+
+
+
+async function addnewFunc() ////////////////////////////////////////ADD NEW ITEM
+{
+  //alert(document.getElementById("new1").value)
+
+  const addurl = `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items`;
+
+  
+// Defining async function
+
+    
+    // Storing response
+    const response = await fetch(addurl, {
+  method: "POST",
+
+  headers: {
+   // "Content-Type": "application/json"    --> option 1 (not working)
+    "Authorization": `Bearer ${bearertoken}` ,
+    "Accept":"application/json;odata=verbose",
+    "Content-Type": "application/json;odata=verbose",
+
+
+   // "Content-Type": "multipart/form-data"  
+   // "Content-Type": "text/plain"    --> option 4
+  },
+
+ body:JSON.stringify({
+  "__metadata": {
+    "type": "SP.ListItem"
+  },
+  "Title": document.getElementById("new1").value,
+  "OData__x0066_p31":document.getElementById("new2").value,
+  "odmd":document.getElementById("new3").value,
+  "expirydate":document.getElementById("new4").value
+})
+
+
+});
+    
+location.reload();
+}
+
+
+
+
+
+
+
+
+async function updateitem(idd)////////////////////////UPDATE ITEM
+{
+
+  const addurl = `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items(${idd})`;
+  
+// Defining async function
+
+    
+    // Storing response
+    const response = await fetch(addurl, {
+  method: "POST",
+
+  headers: {
+   // "Content-Type": "application/json"    --> option 1 (not working)
+    "Authorization": `Bearer ${bearertoken}` ,
+    "Accept":"application/json;odata=verbose",
+    "Content-Type": "application/json;odata=verbose",
+    "If-Match": "*",
+    "X-HTTP-Method": "MERGE"
+
+
+   // "Content-Type": "multipart/form-data"  
+   // "Content-Type": "text/plain"    --> option 4
+  },
+
+ body:JSON.stringify({
+  "__metadata": {
+    "type": "SP.ListItem"
+  },
+  "Title": document.getElementById(`curr${idd}1`).value,
+  "OData__x0066_p31":document.getElementById(`curr${idd}2`).value,
+  "odmd":document.getElementById(`curr${idd}3`).value,
+  "expirydate":document.getElementById(`curr${idd}4`).value
+})
+
+
+});
+    
+location.reload();
+}
+
+
+
+
+
+
+
+async function deleteitem(idd)//////////////////DELETE ITEM
+{
+  const delurl = `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items(${idd})`;
+  
+// Defining async function
+
+    
+    // Storing response
+    const response = await fetch(delurl, {
+  method: "POST",
+
+  headers: {
+   // "Content-Type": "application/json"    --> option 1 (not working)
+    "Authorization": `Bearer ${bearertoken}`  ,
+    "Accept":"application/json;odata=verbose",
+    "Content-Type": "application/json",
+    "If-Match": "*",
+    "X-HTTP-Method": "DELETE"
+   // "Content-Type": "multipart/form-data"  
+   // "Content-Type": "text/plain"    --> option 4
+  },
+
+ 
+
+});
+    
+location.reload();
+}
+
+
+
+
+  let tableFromJson = () => {
+
+    const api_url = 
+      `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items`;
+  
+// Defining async function
+async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url, {
+  method: "GET",
+
+  headers: {
+   // "Content-Type": "application/json"    --> option 1 (not working)
+    "Authorization": `Bearer ${bearertoken}`  ,
+    "Accept":"application/json"
+   // "Content-Type": "multipart/form-data"  
+   // "Content-Type": "text/plain"    --> option 4
+  },
+
+ 
+
+});
+    
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log(data.value);
+
+
+
+    let tab = 
+        `<table><tr>`
+               for (let col of col_items){
+                tab+=`<th>${col}</th>`
+               } 
+
+         tab+=`</tr>`;
+    
+
+
+    // Loop to access all rows 
+    for (let r of data.value) {
+      let datevar=null
+      try{
+        datevar=r.expirydate.split('T')[0]
+      }catch{
+        datevar=null
+      }
+        tab += `<tr> 
+    <td><input id=curr${r.Id}1 value="${r["Title"]}"> </td>
+    <td><input id=curr${r.Id}2 value="${r["OData__x0066_p31"]}"></td>
+    <td><input id=curr${r.Id}3 value="${r.odmd}"></td> 
+    <td><input type="date" id=curr${r.Id}4 value="${datevar}"></input></td> 
+    <td><button id = "currdel${r.Id}"">DELETE</a></td>
+    <td><button id = "currupdate${r.Id}" ">UPDATE</a></td>          
+</tr>`;
+    }
+    // Setting innerHTML as tab variable
+    tab += `<tr> 
+    <td><input id = "new1" value=""> </td>
+    <td><input id ="new2" value=""></td>
+    <td><input  id ="new3"  value=""></td> 
+    <td><input type="date" id="new4" value=""></input></td>
+    <td><button id="newbtn">+</a></td>          
+</tr>`
+
+
+
+    var obj=document.createElement("newww")
+    obj.innerHTML = tab;
+    document.body.appendChild(obj);  
+
+    document.getElementById ("newbtn").addEventListener ("click", addnewFunc, false);
+    for (let r of data.value) {
+    document.getElementById (`currdel${r.Id}`).addEventListener ("click", function(){ deleteitem(r.Id); });
+    }
+
+    for (let r of data.value) {
+    document.getElementById (`currupdate${r.Id}`).addEventListener ("click", function(){ updateitem(r.Id); });
+    }
+    return(tab)
+
+}
+
+// Calling that async function
+getapi(api_url)
+  
+  }
+tableFromJson()
+
+let populatedropdown = () => {
+
+  const api_url = 
+      "https://iccleb.sharepoint.com/sites/NintexTrainee/JohnnyAbouHaidar/_api/web/lists/GetByTitle('list4dropdown')/items";
+  
+// Defining async function
+async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url, {
+  method: "GET",
+
+  headers: {
+   // "Content-Type": "application/json"    --> option 1 (not working)
+    "Authorization": `Bearer ${bearertoken}`  ,
+    "Accept":"application/json"
+   // "Content-Type": "multipart/form-data"  
+   // "Content-Type": "text/plain"    --> option 4
+  },
+
+ 
+
+});
+    
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log(data.value);
+
+    
+let mc_control = '<select name="cars" id="cars">'
+
+
+    // Loop to access all rows 
+    for (let r of data.value) {
+      mc_control+=`<option value="${r.city}">${r.city}</option>`
+    }
+
+
+    var obj=document.createElement("mccontrol")
+    obj.innerHTML = mc_control;
+    document.body.appendChild(obj);  
+        }
+
+        getapi(api_url)
+}
+populatedropdown()
+</script>
+</html>

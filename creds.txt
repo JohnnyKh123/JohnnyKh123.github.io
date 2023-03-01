@@ -1,0 +1,7 @@
+secret=wpQgnnfZOk0spcZfNlCulf0ahFCYTe7bJGBepUBsp8s=
+
+id@tenant=c8a76f93-8c6b-411c-8d44-589a92ca1c90@b1348f50-030e-4ea1-8d44-493ee19f88d8
+
+resource = 00000003-0000-0ff1-ce00-000000000000/iccleb.sharepoint.com@b1348f50-030e-4ea1-8d44-493ee19f88d8
+
+grant type client_credentials
