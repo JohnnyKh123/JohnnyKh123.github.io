@@ -160,7 +160,7 @@ export class HelloWorld extends LitElement {
         {
           if (col_items.length!=i+1)
           {bodyy+=`"${field}": "${document.getElementById("curr"+idd+(i+1)).value}",`;
-          console.log(${field});}
+          }
       else
       {bodyy+=`"${field}": "${document.getElementById("curr"+idd+(i+1)).value}"`}
       }
@@ -276,22 +276,17 @@ for (let r of data.value) {
   }catch{
     datevar=null
   }
-    tab += `<div style ="border:1px solid black;">` 
-      col_items.forEach(function (field, i)
-      {
+  tab += `<div style ="margin: 10px 70px 70px;box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );">
+  <table style ="border-radius: 5px;font-size: 12px;font-weight: normal;border: none;border-collapse: collapse;white-space: nowrap;background-color: white;">
+    <tr><th style="width:300px;color: #ffffff;background: #4FC3A1;text-align: center;">Field</th><th style="width:300px;color: #ffffff;background: #4FC3A1;text-align: center;">Value</th></tr>` 
+  col_items.forEach(function (field, i)
+  {
 
+    tab+=` <tr><td style="text-align: center;border-right: 1px solid #f8f8f8;font-size: 12px;"><label for="curr${r["Id"]}${i+1}" >${field}</label></td><td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><input style=" width:90%;border:none;" id=curr${r["Id"]}${i+1} value="${r[field]}"></td></tr>`
+  });
 
-        tab += `<div style ="margin: 10px 70px 70px;box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );">
-          <table style ="border-radius: 5px;font-size: 12px;font-weight: normal;border: none;border-collapse: collapse;white-space: nowrap;background-color: white;">
-            <tr><th style="width:300px;color: #ffffff;background: #4FC3A1;text-align: center;">Field</th><th style="width:300px;color: #ffffff;background: #4FC3A1;text-align: center;">Value</th></tr>` 
-          col_items.forEach(function (field, i)
-          {
-
-            tab+=` <tr><td style="text-align: center;border-right: 1px solid #f8f8f8;font-size: 12px;"><label for="curr${r["Id"]}${i+1}" >${field}</label></td><td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><input style=" width:90%;border:none;" id=curr${r["Id"]}${i+1} value="${r[field]}"></td></tr>`
-          });
-    
-    tab+=`<tr><td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><button id = "currdel${r.Id}"">DELETE</a></td>
-    <td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><button id = "currupdate${r.Id}" ">UPDATE</a>   </td></tr></table>     
+tab+=`<tr><td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><button id = "currdel${r.Id}"">DELETE</a></td>
+<td style="border-right: 1px solid #f8f8f8;font-size: 12px;text-align: center;"><button id = "currupdate${r.Id}" ">UPDATE</a>   </td></tr></table>     
 </div><br><br><br>`;
 }
 
