@@ -39,7 +39,7 @@ export class HelloWorld extends LitElement {
         },
         wfIDArg: {
           type: 'string',
-          title: 'listnameArg',
+          title: 'wfIDArg',
           description: ''
         }
       }
