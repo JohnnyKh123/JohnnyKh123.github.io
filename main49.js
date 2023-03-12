@@ -65,12 +65,12 @@ export class HelloWorld extends LitElement {
     let wfID=this.wfIDArg;
     
     let col_items=[
-              "Title",
+              //"Title",
               "EmployeeName",
-              "EmployeeID",
-              "EmployeeEmail",
-              "EmployeeDepartment",
-              "EmployeeDivision",
+              //"EmployeeID",
+              //"EmployeeEmail",
+              //"EmployeeDepartment",
+              //"EmployeeDivision",
               "EmployeeGrade",
               "TrainingType",
               "TechnicalTrainingName",
@@ -83,7 +83,7 @@ export class HelloWorld extends LitElement {
               "NonTechnicalTrainingCompetency1",
               "NonTechnicalTrainingCourse1",
               "NonTechnicalTrainingPreferredLea",
-              "NonTechnicalTrainingPreferredLea0"
+              //"NonTechnicalTrainingPreferredLea0"
     ]
     
     
