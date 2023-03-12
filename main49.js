@@ -240,7 +240,7 @@ export class HelloWorld extends LitElement {
     let tableFromJson = () => {
 
       const api_url = 
-        `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items`;
+        `${siteurl}/_api/web/lists/GetByTitle('${listname}')/items?$filter=Reference_x0020_ID eq '${wfID}'`;
     
   // Defining async function
   async function getapi(url) {
