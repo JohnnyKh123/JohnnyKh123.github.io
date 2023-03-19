@@ -13,7 +13,7 @@ export class HelloWorld extends LitElement {
   // return a promise for contract changes.
   static getMetaConfig() {
     return {
-      controlName: 'RS Plugin',
+      controlName: 'RS Plugin Disp',
       fallbackDisableSubmit: false,
       version: '1.2',
       properties: {
