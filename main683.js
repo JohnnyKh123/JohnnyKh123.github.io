@@ -255,7 +255,7 @@ export class HelloWorld extends LitElement {
   
   
     let tableFromJson = () => { 
-      console.log("TOKEN");
+      console.log("TOKEN1");
       let x = 1
       do{console.log(bearertoken);
       x++;
